@@ -1,0 +1,118 @@
+body{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    overflow-x: hidden;
+}
+
+#staticHeader{
+    background-color: #002966;
+    font-size: 50px;
+    color: black;
+    width:100vw;
+    height:80px;
+    text-align:center;
+    line-height: 80px;
+}
+
+#title{
+    padding:10px;
+    text-shadow: 5px 5px 10px #222
+}
+
+#backButton{
+    position:absolute;
+    margin-left: 12px;
+    margin-top:3px;
+    cursor:pointer;
+    display:none;
+}
+
+tr{
+    background-color:#ddd;
+}
+
+.topRow{
+    background-color:#4db8ff;
+    font-size: 20px;
+}
+
+#quizList{
+    display:inherit;
+}
+
+#quizView{
+    display:none;
+}
+
+#quizCreator{
+    display:none;
+}
+#quizViewHeader{
+    background-color: #4db8ff;
+    text-align: center;
+}
+
+.largeButtonDiv{
+    text-align: center;
+    font-size: 30px;
+}
+
+.largeButton{
+    border:solid;
+    border-radius:15px;
+    padding:5px;
+    color:black;
+    background-color:#0072dd;
+    font-weight: bold;
+    transition: background-color 0.1s;
+    cursor:pointer;
+    margin-bottom: 10px;
+}
+
+.largeButton:hover{
+    background-color: #0042bb;
+}
+
+#activeQuiz{
+    display:none;
+}
+
+.back{
+    font-weight:bold;
+}
+
+.question{
+    border:solid;
+    background-color:#80b3ff;
+    border-radius:15px;
+    padding:20px;
+    margin:10px;
+    transition: background-color 0.1s;
+}
+
+.question:hover{
+    background-color: #6093dd;
+}
+
+.btn{
+    cursor:pointer;
+}
+
+.input-group{
+    margin: 5px;
+}
+
+.moreQuestions{
+    text-align: center;
+    font-size: 0;
+    margin-bottom: 20px;
+}
+
+.quizNumberHeader{
+    text-align: center;
+    background-color:#fff;
+    border-radius:5px;
+    border: solid darkblue;
+    padding:10px;
+    margin:10px 10px;
+    font-size: 30px;
+}

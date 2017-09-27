@@ -1,0 +1,184 @@
+body{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    overflow-x: hidden;
+}
+
+#staticHeader{
+    background-color: #002966;
+    font-size: 50px;
+    color: black;
+    width:100vw;
+    height:80px;
+    text-align:center;
+    line-height: 80px;
+}
+
+#title{
+    padding:10px;
+    text-shadow: 5px 5px 10px #222
+}
+
+#backButton{
+    position:absolute;
+    margin-left: 12px;
+    margin-top:3px;
+    cursor:pointer;
+    display:none;
+}
+th{
+    background-color: #ddd;
+}
+
+tr{
+    cursor: pointer;
+}
+
+
+#quizList{
+    display:inherit;
+}
+
+#quizView{
+    display:none;
+}
+
+#quizCreator{
+    display:none;
+}
+#quizViewHeader{
+    background-color: #4db8ff;
+    text-align: center;
+}
+
+.largeButtonDiv{
+    text-align: center;
+    font-size: 30px;
+}
+
+.largeButton{
+    border:solid;
+    border-radius:15px;
+    padding:5px;
+    color:black;
+    background-color:#0072dd;
+    font-weight: bold;
+    transition: background-color 0.1s;
+    cursor:pointer;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.largeButton:hover{
+    background-color: #0042bb;
+}
+
+#activeQuiz{
+    display:none;
+}
+
+.back{
+    font-weight:bold;
+}
+
+.option{
+    border:solid;
+    background-color:#80b3ff;
+    border-radius:15px;
+    padding:20px;
+    margin:10px;
+    transition: background-color 0.1s;
+    cursor: pointer;
+}
+
+.option:hover{
+    background-color: #6093dd;
+}
+
+.btn{
+    cursor:pointer;
+}
+
+.input-group{
+    margin: 5px;
+}
+
+.moreQuestions{
+    text-align: center;
+    font-size: 0;
+    margin-bottom: 20px;
+}
+
+.quizNumberHeader{
+    text-align: center;
+    background-color:#fff;
+    border-radius:5px;
+    border: solid darkblue;
+    padding:10px;
+    margin:10px 10px;
+    font-size: 30px;
+}
+
+.highlight{
+    background-color: red;
+}
+
+#nickInput{
+    margin-right: 10px;
+}
+
+#timer{
+    position:absolute;
+    right: 20px;
+    top: 10px;
+    display:none;
+}
+
+.selected{
+    background-color: lightgreen;
+}
+
+.selected:hover{
+    background-color: #6dc06d;
+}
+
+.correct{
+    background-color: green;
+}
+
+.correct:hover{
+    background-color: #006d00;
+}
+
+.wrong{
+    background-color: red;
+}
+
+.wrong:hover{
+    background-color: #c50000;
+}
+
+#activeQuiz{
+    margin-bottom:50px;
+}
+
+#quizTitle{
+    font-size: 50px;
+    text-align: center;
+    border:solid;
+    background-color:#80b3ff;
+    border-radius:5px;
+    padding:40px;
+    margin:20px;
+}
+.creatorAdds{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.imageUrl{
+    margin-top: 50px;
+}
+
+.alert{
+    display:none;
+}

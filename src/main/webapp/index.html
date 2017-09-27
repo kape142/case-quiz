@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quiz</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+        <script src="https://use.fontawesome.com/db72ecd0d7.js"></script>
+        <script src="jquery-3.2.1.min.js"></script>
+        <script src="http://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <link rel = "stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="styles.css">
+
+    </head>
+
+    <body>
+    <div ID="staticHeader">
+        <div ID="backButton">
+            <span class="fa fa-chevron-left"></span>
+        </div>
+        <span ID="title">Quiz</span>
+        <div ID="timer">
+            <span ID="timerText"></span>
+        </div>
+    </div>
+    <div class="container" ID="quizList">
+        <table ID="quizTable" class="hover">
+            <thead>
+                <tr><th>Title</th><th>Time</th></tr>
+            </thead>
+        </table>
+        <div class = "largeButtonDiv">
+            <span  class = "largeButton" ID ="createButton">Create <span class="fa fa-plus"></span></span>
+            <span class = "largeButton" ID ="refreshButton">Refresh <span class="fa fa-refresh"></span></span>
+        </div>
+    </div>
+
+    <div class="container" ID="activeQuiz">
+        <div ID="quizTitle"></div>
+        <img src="" ID = "quizImage">
+        <div class="row align-items-start">
+            <div class="col option" ID ="option1">
+                Option 1
+            </div>
+            <div class="col option" ID ="option2">
+                Option 2
+            </div>
+        </div>
+        <div class = "largeButtonDiv">
+            <span  class = "largeButton" ID ="scoreboardButton">Show scores</span>
+        </div>
+    </div>
+    <div ID="quizCreator">
+        <div class="input-group">
+            <div class="input-group">
+                <span class="input-group-addon">Title</span>
+                <input type="text" class="form-control" placeholder="Title" ID="titleInput">
+            </div>
+            <div class="input-group">
+                <input type="datetime-local" title="date" ID="quizTime">
+            </div>
+        </div>
+        <div class = "quizNumberHeader">Question 1</div>
+        <div class="container" ID ="createFirstQuestion">
+            <div class="input-group">
+                <span class="input-group-addon" >Question</span>
+                <input type="text" class="form-control input-question findTitle" placeholder="Question">
+            </div>
+            <div class= "input-group" ID = "div1">
+                <div class="input-group">
+                    <span class="input-group-addon">Option #1</span>
+                    <input type="text" class="form-control" placeholder="Option">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">Option #2</span>
+                    <input type="text" class="form-control" placeholder="Option">
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary addOption" ID="btn1"><span class="fa fa-plus"></span></button>
+
+            <div class="creatorAdds">
+                Correct answer: <input type="number" title="correct" class="findCorrect">
+                <br> <br>
+                Seconds to answer: <input type="number" title="time" value=30 class="findTimeAdd">
+                <br> <br>
+                <span class = "imageurl">Optional image url: <input type="url" title ="Url of image" class = "findUrl"></span>
+            </div>
+
+        </div>
+        <div>
+            <div class="moreQuestions">
+                <button type="button" ID = "addQuestion" class="btn btn-primary questionButton"><span class="fa fa-plus"></span> </button>
+            </div>
+            <div class="moreQuestions">
+                <button type="button" ID = "saveQuiz"  class="btn btn-primary"><span class="fa fa-save"></span> </button>
+            </div>
+        </div>
+
+    </div>
+    <div class="container" ID="quizView">
+        <div ID="quizViewHeader">
+            <h1 ID="quizViewTitle">Title</h1>
+        </div>
+        <div ID="nickDiv">
+            Nick: <input type="text" class="" placeholder="name" ID="nickInput"><button type="button" class="btn btn-primary" ID="nickButton">Submit</button><span ID ="nickAppend"></span>
+        </div>
+        <div ID = "playerTableDiv">
+            <table ID = "playerTable" class="hover">
+                <thead>
+                    <tr><th>Name</th><th>Points</th></tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    </body>
+    <footer>
+        <div class="alert alert-warning" ID="nickAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Warning!</strong> You need to choose a nickname!
+        </div>
+        <div class="alert alert-danger" ID="creatorAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Oh snap!</strong> One of your values for correct answer is wrong!
+        </div>
+        <div class="alert alert-info" ID="spectatorAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Heads up!</strong> You did not enter a nickname in time, and are now spectating
+        </div>
+    </footer>
+</html>
+
