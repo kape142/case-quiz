@@ -86,7 +86,7 @@
                 <br> <br>
                 Seconds to answer: <input type="number" title="time" value=30 class="findTimeAdd">
                 <br> <br>
-                <span class = "imageurl">Optional image url: <input type="url" title ="Url of image" class = "findUrl"></span>
+                <span class = "imageurl">Optional image url: <input type="url" title ="Url of image" class = "findUrl" value = "http://"></span>
             </div>
 
         </div>
@@ -127,6 +127,10 @@
             <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
             <strong>Oh snap!</strong> One of your values for correct answer is wrong!
         </div>
+        <div class="alert alert-danger" ID="nameAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Oh snap!</strong> A quiz with this name already exists!
+        </div>
         <div class="alert alert-danger" ID="urlAlert">
             <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
             <strong>Oh snap!</strong> One of your URLs are wrong!
@@ -134,6 +138,10 @@
         <div class="alert alert-info" ID="spectatorAlert">
             <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
             <strong>Heads up!</strong> You did not enter a nickname in time, and are now spectating
+        </div>
+        <div class="alert alert-danger" ID="usernameAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Oh snap!</strong> A user with this name already exists in this quiz!
         </div>
     </footer>
 </html>

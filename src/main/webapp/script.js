@@ -51,7 +51,7 @@ $(document).ready(function() {
         currentQuiz = null;
         timeToStart = null;
         questionsDone=0;
-
+        $(".alert").hide(speed);
     }
     $backButton.click(function() {
         back()
@@ -183,12 +183,20 @@ $(document).ready(function() {
                     $optionRead = $optionRead.next();
                 }
             }
-            if(question.correct>question.options.length || question.correct>= 0){
-                $("#answerAlert").show();
+            if(question.correct>question.options.length || question.correct<= 0 || ""+question.correct!==""+Math.round(question.correct)){
+                $("#answerAlert").show(speed, function(){
+                    $('html, body').animate({
+                        scrollTop: $("#answerAlert").offset().top
+                    }, speed);
+                });
                 return;
             }
-            if(!(question.url==="" || isValidURL(question.url))){
-                $("#urlAlert").show();
+            if(!(question.url==="" || question.url==="http://" || isValidURL(question.url))){
+                $("#urlAlert").show(speed,function(){
+                    $('html, body').animate({
+                        scrollTop: $("#urlAlert").offset().top
+                    }, speed);
+                });
                 return;
             }
             quiz.questions.push(question);
@@ -203,13 +211,18 @@ $(document).ready(function() {
             success: function(){
                 quizTable.ajax.reload();
                 $("input").val("");
+                $(".findUrl").val("http://");
+                back();
             },
             error: function(xhr, textStatus, errorThrown){
                 console.log(textStatus +", "+errorThrown);
-                alert("A quiz with this name already exists!");
+                $("#nameAlert").show(speed, function(){
+                    $('html, body').animate({
+                        scrollTop: $("#nameAlert").offset().top
+                    }, speed);
+                });
             }
         });
-        back();
     });
 
     function isValidURL(str) {
@@ -234,7 +247,7 @@ $(document).ready(function() {
         var name = $nickInput.val();
         $.ajax({
             url:"rest/quizzes/"+currentQuiz.title+"/users",
-            type: "POST", //legg til bruker av quizzen
+            type: "POST",
             data: name,
             success: function(){
                 $playerTable.DataTable().ajax.reload();
@@ -243,7 +256,11 @@ $(document).ready(function() {
             },
             error: function(xhr, textStatus, errorThrown){
                 console.log(textStatus +", "+errorThrown);
-                alert("A user with this name already exists in this quiz!");
+                $("#usernameAlert").show(speed, function(){
+                    $('html, body').animate({
+                        scrollTop: $("#usernameAlert").offset().top
+                    }, speed);
+                });
             }
         });
     });
@@ -289,7 +306,11 @@ $(document).ready(function() {
             return;
         }
         if(timeToStart===10 && nick===null){
-            $("#nickAlert").show();
+            $("#nickAlert").show(speed, function(){
+                $('html, body').animate({
+                    scrollTop: $("#nickAlert").offset().top
+                }, speed);
+            });
         }
         if(questionsDone===currentQuiz.questions.length && delay === false && timeToStart<=0){
             if(timeToStart===0){
@@ -310,7 +331,11 @@ $(document).ready(function() {
                     questionsDone=currentQuiz.questions.length;
                     nick="";
                     nickSet();
-                    $("#spectatorAlert").show();
+                    $("#spectatorAlert").show(speed, function(){
+                        $('html, body').animate({
+                            scrollTop: $("#spectatorAlert").offset().top
+                        }, speed);
+                    });
                     return;
                 }
                 updateActiveQuiz(questionsDone);
