@@ -183,8 +183,12 @@ $(document).ready(function() {
                     $optionRead = $optionRead.next();
                 }
             }
-            if(question.correct>question.options.length+1){
-                $("#creatorAlert").show();
+            if(question.correct>question.options.length || question.correct>= 0){
+                $("#answerAlert").show();
+                return;
+            }
+            if(!(question.url==="" || isValidURL(question.url))){
+                $("#urlAlert").show();
                 return;
             }
             quiz.questions.push(question);
@@ -201,12 +205,18 @@ $(document).ready(function() {
                 $("input").val("");
             },
             error: function(xhr, textStatus, errorThrown){
-                console.log(textStatus);
+                console.log(textStatus +", "+errorThrown);
                 alert("A quiz with this name already exists!");
             }
         });
         back();
     });
+
+    function isValidURL(str) {
+        var a  = document.createElement('a');
+        a.href = str;
+        return (a.host && a.host !== window.location.host);
+    }
 
     $scoreboardButton.click(function(){
         if(showingScores){
@@ -232,7 +242,7 @@ $(document).ready(function() {
                 nickSet();
             },
             error: function(xhr, textStatus, errorThrown){
-                console.log(textStatus);
+                console.log(textStatus +", "+errorThrown);
                 alert("A user with this name already exists in this quiz!");
             }
         });
@@ -349,7 +359,7 @@ $(document).ready(function() {
     }
 
     function updateActiveQuiz(index){
-        var question = currentQuiz.questions[index]
+        var question = currentQuiz.questions[index];
         $("#quizTitle").html(question.title);
         $("#quizImage").attr('src',question.url);
         if(optionBoxesCreated>=question.options.length){

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @Path("/quizzes/")
 public class QuizKlient {
-    private static ArrayList<Quiz> quizzes = new ArrayList<Quiz>();
+    private static ArrayList<Quiz> quizzes = new ArrayList<>();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -43,7 +43,6 @@ public class QuizKlient {
             }
             q.addUser(new User(name,0));
         }else{
-            System.out.println("not found");
             throw new NotFoundException("Could not find specified Quiz");
         }
     }
@@ -56,7 +55,6 @@ public class QuizKlient {
         if(q!=null){
             q.incrementUser(name);
         }else{
-            System.out.println("not found");
             throw new NotFoundException("Could not find specified Quiz");
         }
     }
@@ -79,7 +77,6 @@ public class QuizKlient {
         if(q!=null){
             quizzes.remove(q);
         }else{
-            System.out.println("not found");
             throw new NotFoundException("Could not find specified Quiz");
         }
     }
@@ -92,7 +89,6 @@ public class QuizKlient {
         if(q!=null){
             q.getUsers().remove(new User(name,0));
         }else{
-            System.out.println("not found");
             throw new NotFoundException("Could not find specified Quiz");
         }
     }
