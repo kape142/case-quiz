@@ -7,7 +7,6 @@ $(document).ready(function() {
     var $quizCreator = $("#quizCreator");
     var $quizViewTitle = $("#quizViewTitle");
     var $createButton = $("#createButton");
-    var $refreshButton = $("#refreshButton");
     var $addQuestion = $("#addQuestion");
     var $latestQuestion;
     $latestQuestion = $("#createFirstQuestion");
@@ -18,6 +17,7 @@ $(document).ready(function() {
     var $nickButton = $("#nickButton");
     var $nickInput = $("#nickInput");
     var $nickAppend = $("#nickAppend");
+    var $nickSpan = $("#nickSpan");
     var $timer = $("#timer");
     var $timerText = $("#timerText");
     var $scoreboardButton = $("#scoreboardButton");
@@ -121,9 +121,6 @@ $(document).ready(function() {
         });
     });
 
-    $refreshButton.click(function () {
-        $quizTable.DataTable().ajax.reload();
-    });
 
     $addQuestion.click(function(){
         questionsCreated++;
@@ -145,9 +142,9 @@ $(document).ready(function() {
         var questionNo = $(this).attr('id').slice(3,4);
         var optNo = optionsCreated[questionNo-1];
         if(optNo%2===0){
-            $(this).before(createOptionGroup(optNo+1));
+            $(this).parent().before(createOptionGroup(optNo+1));
         }else{
-            $(this).prev().children().after(createOption(optNo+1));
+            $(this).parent().prev().children().after(createOption(optNo+1));
         }
         optionsCreated[questionNo-1]++;
     });
@@ -266,15 +263,17 @@ $(document).ready(function() {
     });
 
     function nickSet(){
-        $nickInput.hide();
-        $nickButton.hide();
+        $nickInput.slideUp(speed);
+        $nickButton.slideUp(speed);
+        $nickSpan.slideUp(speed);
         $nickAppend.html(nick);
-        $nickAppend.show();
+        $nickAppend.slideDown(speed);
     }
 
     function nickReset(){
         $nickInput.show();
         $nickButton.show();
+        $nickSpan.hide();
         $nickAppend.hide();
         $nickAppend.html("");
     }
@@ -303,6 +302,7 @@ $(document).ready(function() {
 
     function update(){
         if(currentQuiz===null){
+            $quizTable.DataTable().ajax.reload();
             return;
         }
         if(timeToStart===10 && nick===null){
@@ -369,6 +369,7 @@ $(document).ready(function() {
                 delay = false;
                 return;
             }
+            $playerTable.DataTable().ajax.reload();
             updateActiveQuiz(questionsDone);
             timeToStart+=currentQuiz.questions[questionsDone].timeAdd;
             questionsDone++;

@@ -9,9 +9,10 @@
         <script src="https://use.fontawesome.com/db72ecd0d7.js"></script>
         <script src="jquery-3.2.1.min.js"></script>
         <script src="http://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
         <script src="script.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-        <link rel = "stylesheet" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" href="styles.css">
 
     </head>
@@ -27,14 +28,13 @@
         </div>
     </div>
     <div class="container" ID="quizList">
-        <table ID="quizTable" class="hover">
+        <table ID="quizTable" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
             <thead>
                 <tr><th>Title</th><th>Time</th></tr>
             </thead>
         </table>
         <div class = "largeButtonDiv">
             <span  class = "largeButton" ID ="createButton">Create <span class="fa fa-plus"></span></span>
-            <span class = "largeButton" ID ="refreshButton">Refresh <span class="fa fa-refresh"></span></span>
         </div>
     </div>
 
@@ -79,22 +79,25 @@
                     <input type="text" class="form-control" placeholder="Option">
                 </div>
             </div>
-            <button type="button" class="btn btn-primary addOption" ID="btn1"><span class="fa fa-plus"></span></button>
-
-            <div class="creatorAdds">
-                Correct answer: <input type="number" title="correct" class="findCorrect">
-                <br> <br>
-                Seconds to answer: <input type="number" title="time" value=30 class="findTimeAdd">
-                <br> <br>
-                <span class = "imageurl">Optional image url: <input type="url" title ="Url of image" class = "findUrl" value = "http://"></span>
+            <div class = "buttonCenter">
+                <button type="button" class="btn btn-primary btn-lg btn-block addOption" ID="btn1"><span class="fa fa-plus"></span></button>
+            </div>
+            <div class="creatorAdds input-group">
+                <div class = "input-group">
+                    <span class="input-group-addon">Correct answer: </span> <input type="number" title="correct" class="findCorrect form-control">
+                </div>
+                <div class = "input-group">
+                    <span class="input-group-addon">Seconds to answer: </span><input type="number" title="time" value=30 class="findTimeAdd form-control">
+                </div>
+                <div class = "input-group">
+                    <span class="input-group-addon">Optional image url:</span> <input type="url" title ="Url of image" class = "findUrl form-control" value = "http://">
+                </div>
             </div>
 
         </div>
         <div>
             <div class="moreQuestions">
                 <button type="button" ID = "addQuestion" class="btn btn-primary questionButton"><span class="fa fa-plus"></span> </button>
-            </div>
-            <div class="moreQuestions">
                 <button type="button" ID = "saveQuiz"  class="btn btn-primary"><span class="fa fa-save"></span> </button>
             </div>
         </div>
@@ -104,11 +107,15 @@
         <div ID="quizViewHeader">
             <h1 ID="quizViewTitle">Title</h1>
         </div>
-        <div ID="nickDiv">
-            Nick: <input type="text" class="" placeholder="name" ID="nickInput"><button type="button" class="btn btn-primary" ID="nickButton">Submit</button><span ID ="nickAppend"></span>
+        <div class="textCenter">
+            <div class="input-group input-group-lg">
+                <span class = "input-group-addon" id = "nickSpan" >Nick:</span>
+                <input type="text" class="form-control" placeholder="Name" ID="nickInput">
+            </div>
+            <button type="button" class="btn btn-primary btn-lg btn-block" ID="nickButton">Submit</button><span ID ="nickAppend"></span>
         </div>
         <div ID = "playerTableDiv">
-            <table ID = "playerTable" class="hover">
+            <table ID = "playerTable" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
                 <thead>
                     <tr><th>Name</th><th>Points</th></tr>
                 </thead>

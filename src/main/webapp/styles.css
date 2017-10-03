@@ -6,7 +6,7 @@ body{
 #staticHeader{
     background-color: #002966;
     font-size: 50px;
-    color: black;
+    color: white;
     width:100vw;
     height:80px;
     text-align:center;
@@ -24,18 +24,12 @@ body{
     margin-top:3px;
     cursor:pointer;
     display:none;
+    text-shadow: 5px 5px 10px #222;
 }
-th{
-    background-color: #ddd;
-}
-
-tr{
-    cursor: pointer;
-}
-
 
 #quizList{
     display:inherit;
+    margin-top: 20px;
 }
 
 #quizView{
@@ -122,15 +116,14 @@ tr{
     background-color: red;
 }
 
-#nickInput{
-    margin-right: 10px;
-}
 
 #timer{
     position:absolute;
     right: 20px;
     top: 10px;
     display:none;
+    color: white;
+    text-shadow: 5px 5px 10px #222
 }
 
 .selected{
@@ -181,4 +174,34 @@ tr{
 
 .alert{
     display:none;
+}
+
+.findCorrect{
+    margin-right: 10px;
+}
+
+.findTimeAdd{
+    margin-right: 10px;
+}
+
+.buttonCenter{
+    text-align: center;
+    width: 25vw;
+    margin-left: 27.5vw
+}
+
+#addQuestion{
+    margin-right: 30px;
+}
+
+#nickButton{
+    margin-bottom: 20px;
+}
+
+#nickAppend{
+    font-size: 40px;
+}
+
+.textCenter{
+    text-align: center;
 }
