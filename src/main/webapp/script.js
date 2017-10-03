@@ -162,6 +162,14 @@ $(document).ready(function() {
             time: $quizTime[0].valueAsNumber - (2*60*60*1000),
             questions: []
         };
+        if(quiz.title.trim()===""){
+            showAlert("titleAlert");
+            return;
+        }
+        if(quiz.time <= new Date().getTime()){
+            showAlert("timeAlert");
+            return;
+        }
         var $questionRead = $("#createFirstQuestion");
         for(var i = 0;i<qNumber-1;i++) {
             var question = {
@@ -171,29 +179,34 @@ $(document).ready(function() {
                 url: $questionRead.find(".findUrl").val(),
                 options: []
             };
+            if(question.title.trim()===""){
+                $("#alertQuestionTitleNumber").html(""+(i+1));
+                showAlert("questionTitleAlert");
+                return;
+            }
             var $optionRead = $("#div"+(i+1));
             for(var j=0;j<optionsCreated[i];j++){
+                var t;
                 if(j%2===0){
-                    question.options.push($optionRead.find("input").val());
+                    t = $optionRead.find("input").val();
                 }else{
-                    question.options.push($optionRead.find("input").last().val());
+                    t = $optionRead.find("input").last().val();
                     $optionRead = $optionRead.next();
                 }
+                if(t.trim()===""){
+                    $("#alertQuestionNumber").html(""+(i+1));
+                    $("#alertQuestionOptionNumber").html(""+(j+1));
+                    showAlert("questionOptionAlert");
+                    return;
+                }
+                question.options.push(t);
             }
             if(question.correct>question.options.length || question.correct<= 0 || ""+question.correct!==""+Math.round(question.correct)){
-                $("#answerAlert").show(speed, function(){
-                    $('html, body').animate({
-                        scrollTop: $("#answerAlert").offset().top
-                    }, speed);
-                });
+                showAlert("answerAlert");
                 return;
             }
             if(!(question.url==="" || question.url==="http://" || isValidURL(question.url))){
-                $("#urlAlert").show(speed,function(){
-                    $('html, body').animate({
-                        scrollTop: $("#urlAlert").offset().top
-                    }, speed);
-                });
+                showAlert("urlAlert");
                 return;
             }
             quiz.questions.push(question);
@@ -213,11 +226,7 @@ $(document).ready(function() {
             },
             error: function(xhr, textStatus, errorThrown){
                 console.log(textStatus +", "+errorThrown);
-                $("#nameAlert").show(speed, function(){
-                    $('html, body').animate({
-                        scrollTop: $("#nameAlert").offset().top
-                    }, speed);
-                });
+                showAlert("nameAlert");
             }
         });
     });
@@ -240,6 +249,13 @@ $(document).ready(function() {
         }
     });
 
+    function showAlert(alertName){
+        $("#"+alertName).show(speed,function(){
+            $('html, body').animate({
+                scrollTop: $("#"+alertName).offset().top
+            }, speed);
+        });
+    }
     $nickButton.click(function(){
         var name = $nickInput.val();
         $.ajax({
@@ -306,18 +322,13 @@ $(document).ready(function() {
             return;
         }
         if(timeToStart===10 && nick===null){
-            $("#nickAlert").show(speed, function(){
-                $('html, body').animate({
-                    scrollTop: $("#nickAlert").offset().top
-                }, speed);
-            });
+            showAlert("nickAlert");
         }
         if(questionsDone===currentQuiz.questions.length && delay === false && timeToStart<=0){
             if(timeToStart===0){
                 $quizView.slideDown(speed);
                 $activeQuiz.slideUp(speed);
                 timeToStart--;
-                console.log("check");
             }
             $timerText.html("");
             $playerTable.DataTable().ajax.reload();
@@ -331,11 +342,7 @@ $(document).ready(function() {
                     questionsDone=currentQuiz.questions.length;
                     nick="";
                     nickSet();
-                    $("#spectatorAlert").show(speed, function(){
-                        $('html, body').animate({
-                            scrollTop: $("#spectatorAlert").offset().top
-                        }, speed);
-                    });
+                    showAlert("spectatorAlert");
                     return;
                 }
                 updateActiveQuiz(questionsDone);
@@ -424,6 +431,10 @@ $(document).ready(function() {
     });
     function timeToString(timeToStart){
         var string = "";
+        if(timeToStart>=86400*365){
+            string+=Math.floor(timeToStart/(86400*365))+"y, ";
+            timeToStart%=(86400*365);
+        }
         if(timeToStart>=86400){
             string+=Math.floor(timeToStart/86400)+"d, ";
             timeToStart%=86400;
@@ -441,7 +452,7 @@ $(document).ready(function() {
     }
 
 
-
+    /*
     //Testing
     $("#title").click(function () {
         if(timeToStart>0){
@@ -457,6 +468,6 @@ $(document).ready(function() {
                 $quizTable.DataTable().ajax.reload();
             }
         });
-
     });
+    */
 });

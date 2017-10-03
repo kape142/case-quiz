@@ -13,9 +13,12 @@ body{
     line-height: 80px;
 }
 
+tr{
+    cursor: pointer;
+}
 #title{
     padding:10px;
-    text-shadow: 5px 5px 10px #222
+    text-shadow: 5px 5px 10px #222;
 }
 
 #backButton{
@@ -50,20 +53,23 @@ body{
 }
 
 .largeButton{
-    border:solid;
+    border:solid #0072dd;
     border-radius:15px;
     padding:5px;
-    color:black;
+    color:white;
     background-color:#0072dd;
+    text-shadow: 2px 2px 5px #222;
     font-weight: bold;
-    transition: background-color 0.1s;
+    transition: background-color 0.1s, border 0.1s;
     cursor:pointer;
     margin-bottom: 10px;
     margin-right: 10px;
+    box-shadow: 5px 5px 10px #222;
 }
 
 .largeButton:hover{
     background-color: #0042bb;
+    border: solid #0042bb;
 }
 
 #activeQuiz{
@@ -107,9 +113,9 @@ body{
     background-color:#fff;
     border-radius:5px;
     border: solid darkblue;
-    padding:10px;
+    padding:8px;
     margin:10px 10px;
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .highlight{
@@ -127,11 +133,11 @@ body{
 }
 
 .selected{
-    background-color: lightgreen;
+    background-color: #4f6595;
 }
 
 .selected:hover{
-    background-color: #6dc06d;
+    background-color: #37466f;
 }
 
 .correct{
@@ -186,8 +192,7 @@ body{
 
 .buttonCenter{
     text-align: center;
-    width: 25vw;
-    margin-left: 27.5vw
+    align-items: center;
 }
 
 #addQuestion{
@@ -204,4 +209,9 @@ body{
 
 .textCenter{
     text-align: center;
+}
+
+.addOption{
+    width: 25vw;
+    margin: 0 auto;
 }

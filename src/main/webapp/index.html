@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="container" ID="quizList">
-        <table ID="quizTable" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
+        <table ID="quizTable" class="table table-striped table-bordered table-hover" cellspacing="0" width="100%">
             <thead>
                 <tr><th>Title</th><th>Time</th></tr>
             </thead>
@@ -55,7 +55,7 @@
     </div>
     <div ID="quizCreator">
         <div class="input-group">
-            <div class="input-group">
+            <div class="input-group input-group-lg">
                 <span class="input-group-addon">Title</span>
                 <input type="text" class="form-control" placeholder="Title" ID="titleInput">
             </div>
@@ -80,7 +80,7 @@
                 </div>
             </div>
             <div class = "buttonCenter">
-                <button type="button" class="btn btn-primary btn-lg btn-block addOption" ID="btn1"><span class="fa fa-plus"></span></button>
+                 <button type="button" class="btn btn-primary btn-lg btn-block addOption" ID="btn1"><span class="fa fa-plus"></span></button>
             </div>
             <div class="creatorAdds input-group">
                 <div class = "input-group">
@@ -149,6 +149,22 @@
         <div class="alert alert-danger" ID="usernameAlert">
             <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
             <strong>Oh snap!</strong> A user with this name already exists in this quiz!
+        </div>
+        <div class="alert alert-danger" ID="titleAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Oh snap!</strong> Your quiz needs to have a title!
+        </div>
+        <div class="alert alert-danger" ID="timeAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Oh snap!</strong> The assigned time for the quiz has already passed!
+        </div>
+        <div class="alert alert-danger" ID="questionTitleAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Oh snap!</strong> Question number <span id="alertQuestionTitleNumber"></span> lacks a proper title
+        </div>
+        <div class="alert alert-danger" ID="questionOptionAlert">
+            <a href="#" class="close" data-hide="alert" aria-label="close">&times;</a>
+            <strong>Oh snap!</strong> Question number <span id="alertQuestionNumber"></span>, option number <span id="alertQuestionOptionNumber"></span> lacks proper text
         </div>
     </footer>
 </html>
