@@ -20,7 +20,6 @@ public class Quiz {
         this.time = time;
         this.questions = questions;
         this.date = new Date(time).toString();
-        System.out.println(date);
     }
 
     public void addUser(User user){
@@ -59,6 +58,7 @@ public class Quiz {
 
     public void setTime(long time) {
         this.time = time;
+        this.date = new Date(time).toString();
     }
 
     public void setUsers(ArrayList<User> users) {

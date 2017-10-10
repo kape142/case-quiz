@@ -121,7 +121,6 @@ $(document).ready(function() {
         });
     });
 
-
     $addQuestion.click(function(){
         questionsCreated++;
         $.get("newQuestion.html", function(data){
@@ -205,7 +204,10 @@ $(document).ready(function() {
                 showAlert("answerAlert");
                 return;
             }
-            if(!(question.url==="" || question.url==="http://" || isValidURL(question.url))){
+            if(question.url==="http://"){
+                question.url = "";
+            }
+            if(!(question.url==="" || isValidURL(question.url))){
                 showAlert("urlAlert");
                 return;
             }
@@ -471,3 +473,64 @@ $(document).ready(function() {
     });
     */
 });
+
+function deleteAllQuizzes(){
+    $.ajax({
+        url:"rest/quizzes/",
+        type: "DELETE"
+    });
+}
+
+function postponeQuiz(title,time) {
+    $.ajax({
+        url: "rest/quizzes/" + title,
+        type: "PUT",
+        data: "" + time
+    });
+}
+
+function addStandardQuiz(){
+    var quiz = {
+        title: "Standard Quiz",
+        time: new Date().getTime() + (60*1000),
+        questions: []
+    };
+    var question = {
+        title: "Hva er det latinske navnet for en vanlig brunrotte?",
+        correct: 2,
+        timeAdd: 20,
+        url: "https://upload.wikimedia.org/wikipedia/commons/2/27/London_Scruffy_Rat.jpg",
+        options: ["Rattus Rattus","Rattus Norvegicus","Rattus Brunneis","Rattus Arctos"]
+    };
+    quiz.questions.push(question);
+    question = {
+        title: "Hvem er denne karen med sekk og lue på?",
+        correct: 2,
+        timeAdd: 15,
+        url: "https://gfx.nrk.no/iGO6JwTOj58wB08mo2wgZwoBuUw6xbFC7tIAy6orVBNA",
+        options: ["Nissen","Jon Blund"]
+    };
+    quiz.questions.push(question);
+    question = {
+        title: "Hva er hovedstaden i Nepal?",
+        correct: 4,
+        timeAdd: 30,
+        url: "",
+        options: ["Ulan Bator","Kuala Lumpur","Manila","Katmandu"]
+    };
+    quiz.questions.push(question);
+    $.ajax({
+        url:"rest/quizzes",
+        type: "POST", //opprett ny quiz
+        data: JSON.stringify(quiz),
+        contentType: 'application/json; charset=utf-8',
+        datatype: 'json',
+        error: function(xhr, textStatus, errorThrown){
+            $.ajax({
+                url:"rest/quizzes/Standard Quiz",
+                type: "DELETE"
+            });
+            addStandardQuiz();
+        }
+    });
+}

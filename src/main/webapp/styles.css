@@ -215,3 +215,10 @@ tr{
     width: 25vw;
     margin: 0 auto;
 }
+
+#quizImage{
+    max-width: 80vw;
+    max-height: 40vh;
+    margin: auto;
+    display: block;
+}

@@ -59,6 +59,18 @@ public class QuizKlient {
         }
     }
 
+    @Path("/{title}")
+    @PUT
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void postponeQuiz(@PathParam("title") String title, String time){
+        Quiz q = findQuiz(title);
+        if(q!=null){
+            q.setTime(q.getTime()+Integer.parseInt(time)*1000);
+        }else{
+            throw new NotFoundException("Could not find specified Quiz");
+        }
+    }
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public void addQuiz(Quiz quiz){
@@ -79,6 +91,11 @@ public class QuizKlient {
         }else{
             throw new NotFoundException("Could not find specified Quiz");
         }
+    }
+
+    @DELETE
+    public void deleteAllQuizzes(){
+        quizzes = new ArrayList<>();
     }
 
     @Path("{title}/users/{user}")
