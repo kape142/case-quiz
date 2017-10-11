@@ -20,9 +20,7 @@ $(document).ready(function() {
     var $nickSpan = $("#nickSpan");
     var $timer = $("#timer");
     var $timerText = $("#timerText");
-    var $scoreboardButton = $("#scoreboardButton");
     var $body = $("body");
-    var showingScores = false;
     var currentQuiz = null;
     var nick = null;
     var timeToStart = null;
@@ -149,10 +147,10 @@ $(document).ready(function() {
     });
 
     function createOptionGroup(number){
-        return "<div class= \"input-group\">"+createOption(number)+"</div>";
+        return "<div class= \"input-group row\">"+createOption(number)+"</div>";
     }
     function createOption(number){
-        return "<div class=\"input-group\"><span class=\"input-group-addon\">Option #"+number+"</span> <input type=\"text\" class=\"form-control\" placeholder=\"Option\"></div>";
+        return "<div class=\"input-group col\"><span class=\"input-group-addon \">#"+number+"</span> <input type=\"text\" class=\"form-control option-input\" placeholder=\"Option\"></div>";
     }
 
     $saveQuiz.click(function () {
@@ -238,18 +236,6 @@ $(document).ready(function() {
         a.href = str;
         return (a.host && a.host !== window.location.host);
     }
-
-    $scoreboardButton.click(function(){
-        if(showingScores){
-            $(this).html("Show scores");
-            $quizView.slideUp(speed);
-            showingScores = false;
-        }else{
-            $(this).html("Hide scores");
-            $quizView.slideDown(speed);
-            showingScores = true;
-        }
-    });
 
     function showAlert(alertName){
         $("#"+alertName).show(speed,function(){
@@ -348,7 +334,6 @@ $(document).ready(function() {
                     return;
                 }
                 updateActiveQuiz(questionsDone);
-                $quizView.slideUp(speed);
                 $activeQuiz.slideDown(speed);
                 timeToStart+=currentQuiz.questions[questionsDone].timeAdd;
                 questionsDone++;
@@ -395,7 +380,7 @@ $(document).ready(function() {
 
     function updateActiveQuiz(index){
         var question = currentQuiz.questions[index];
-        $("#quizTitle").html(question.title);
+        $("#quizTitleText").html(question.title);
         $("#quizImage").attr('src',question.url);
         if(optionBoxesCreated>=question.options.length){
             for(var i = 0;i < question.options.length; i++){
@@ -492,7 +477,7 @@ function postponeQuiz(title,time) {
 function addStandardQuiz(){
     var quiz = {
         title: "Standard Quiz",
-        time: new Date().getTime() + (60*1000),
+        time: new Date().getTime() + (20*1000),
         questions: []
     };
     var question = {

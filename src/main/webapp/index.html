@@ -34,12 +34,12 @@
             </thead>
         </table>
         <div class = "largeButtonDiv">
-            <span  class = "largeButton" ID ="createButton">Create <span class="fa fa-plus"></span></span>
+            <button class="btn btn-primary btn-lg" ID = "createButton" type="submit">Create <span class="fa fa-plus"></span></button>
         </div>
     </div>
 
     <div class="container" ID="activeQuiz">
-        <div ID="quizTitle"></div>
+        <div ID="quizTitle"><h2 id="quizTitleText"></h2></div>
         <img src="" ID = "quizImage">
         <div class="row align-items-start">
             <div class="col option" ID ="option1">
@@ -48,9 +48,6 @@
             <div class="col option" ID ="option2">
                 Option 2
             </div>
-        </div>
-        <div class = "largeButtonDiv">
-            <span  class = "largeButton" ID ="scoreboardButton">Show scores</span>
         </div>
     </div>
     <div ID="quizCreator">
@@ -69,36 +66,36 @@
                 <span class="input-group-addon" >Question</span>
                 <input type="text" class="form-control input-question findTitle" placeholder="Question">
             </div>
-            <div class= "input-group" ID = "div1">
-                <div class="input-group">
-                    <span class="input-group-addon">Option #1</span>
-                    <input type="text" class="form-control" placeholder="Option">
+            <div class= "input-group row" ID = "div1">
+                <div class="input-group col">
+                    <span class="input-group-addon">#1</span>
+                    <input type="text" class="form-control option-input" placeholder="Option">
                 </div>
-                <div class="input-group">
-                    <span class="input-group-addon">Option #2</span>
-                    <input type="text" class="form-control" placeholder="Option">
+                <div class="input-group col">
+                    <span class="input-group-addon">#2</span>
+                    <input type="text" class="form-control option-input" placeholder="Option">
                 </div>
             </div>
             <div class = "buttonCenter">
                  <button type="button" class="btn btn-primary btn-lg btn-block addOption" ID="btn1"><span class="fa fa-plus"></span></button>
             </div>
-            <div class="creatorAdds input-group">
-                <div class = "input-group">
-                    <span class="input-group-addon">Correct answer: </span> <input type="number" title="correct" class="findCorrect form-control">
+            <div class="creatorAdds row">
+                <div class = "input-group col col-sm">
+                    <span class="input-group-addon">Correct answer: </span> <input type="number" title="correct" class="findCorrect form-control adds-input">
                 </div>
-                <div class = "input-group">
-                    <span class="input-group-addon">Seconds to answer: </span><input type="number" title="time" value=30 class="findTimeAdd form-control">
+                <div class = "input-group col col-sm">
+                    <span class="input-group-addon">Seconds to answer: </span><input type="number" title="time" value=30 class="findTimeAdd form-control adds-input">
                 </div>
-                <div class = "input-group">
-                    <span class="input-group-addon">Optional image url:</span> <input type="url" title ="Url of image" class = "findUrl form-control" value = "http://">
+                <div class = "input-group col col-sm">
+                    <span class="input-group-addon">Optional image url:</span> <input type="url" title ="Url of image" class = "findUrl form-control adds-input" value = "http://">
                 </div>
             </div>
 
         </div>
         <div>
             <div class="moreQuestions">
-                <button type="button" ID = "addQuestion" class="btn btn-primary questionButton"><span class="fa fa-plus"></span> </button>
-                <button type="button" ID = "saveQuiz"  class="btn btn-primary"><span class="fa fa-save"></span> </button>
+                <button type="button" ID = "addQuestion" class="btn btn-primary btn-lg  questionButton"><span class="fa fa-plus"></span> </button>
+                <button type="button" ID = "saveQuiz"  class="btn btn-primary btn-lg"><span class="fa fa-save"></span> </button>
             </div>
         </div>
 
@@ -112,7 +109,7 @@
                 <span class = "input-group-addon" id = "nickSpan" >Nick:</span>
                 <input type="text" class="form-control" placeholder="Name" ID="nickInput">
             </div>
-            <button type="button" class="btn btn-primary btn-lg btn-block" ID="nickButton">Submit</button><span ID ="nickAppend"></span>
+            <button type="button" class="btn btn-primary btn-block" ID="nickButton">Submit</button><span ID ="nickAppend"></span>
         </div>
         <div ID = "playerTableDiv">
             <table ID = "playerTable" class="table table-striped table-bordered hover" cellspacing="0" width="100%">
