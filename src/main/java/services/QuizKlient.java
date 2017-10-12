@@ -38,10 +38,10 @@ public class QuizKlient {
     public void addUser(@PathParam("title") String title, String name){
         Quiz q = findQuiz(title);
         if(q!=null){
-            if(q.getUsers().contains(new User(name,0))){
+            if(q.getUsers().contains(new User(name))){
                 throw new IllegalArgumentException("User already exists");
             }
-            q.addUser(new User(name,0));
+            q.addUser(new User(name));
         }else{
             throw new NotFoundException("Could not find specified Quiz");
         }
@@ -49,11 +49,12 @@ public class QuizKlient {
 
     @Path("/{title}/users/{name}")
     @PUT
-    @Consumes(MediaType.TEXT_PLAIN)
-    public void addPoints(@PathParam("title") String title,@PathParam("name") String name){
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public void addPoints(@PathParam("title") String title,@PathParam("name") String name, String correct){
+        boolean c = correct.equals("true");
         Quiz q = findQuiz(title);
         if(q!=null){
-            q.incrementUser(name);
+            q.incrementUser(name,c);
         }else{
             throw new NotFoundException("Could not find specified Quiz");
         }
@@ -104,7 +105,7 @@ public class QuizKlient {
     public void deleteUser(@PathParam("title") String title, @PathParam("user") String name){
         Quiz q = findQuiz(title);
         if(q!=null){
-            q.getUsers().remove(new User(name,0));
+            q.getUsers().remove(new User(name));
         }else{
             throw new NotFoundException("Could not find specified Quiz");
         }

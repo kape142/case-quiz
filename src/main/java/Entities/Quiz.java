@@ -13,7 +13,6 @@ public class Quiz {
     private ArrayList<User> users = new ArrayList<>();
 
     public Quiz(){
-
     }
     public Quiz(String title, long time, Question[] questions){
         this.title = title;
@@ -26,11 +25,16 @@ public class Quiz {
         users.add(user);
     }
 
-    public void incrementUser(String name){
+    public void incrementUser(String name, boolean correct){
         for(User u: users){
             if(u.getName().equals(name)){
-                u.incrementPoints();
-                return;
+                if(correct) {
+                    u.incrementPoints();
+                    return;
+                }else{
+                    u.stopStreak();
+                    return;
+                }
             }
         }
         throw new NotFoundException("Could not find specified User");

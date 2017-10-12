@@ -14,6 +14,7 @@ $(document).ready(function() {
     var $quizTable = $("#quizTable");
     var $quizTime = $("#quizTime");
     var $playerTable = $("#playerTable");
+    var $playerTableDiv = $("#playerTableDiv");
     var $nickButton = $("#nickButton");
     var $nickInput = $("#nickInput");
     var $nickAppend = $("#nickAppend");
@@ -79,9 +80,11 @@ $(document).ready(function() {
             url: 'rest/quizzes/null/users',
             dataSrc: ''
         },
+
         columns: [
             { data: 'name' },
-            { data: 'points' }
+            { data: 'points' },
+            { data: 'streak' }
         ]
     });
 
@@ -102,6 +105,7 @@ $(document).ready(function() {
         if(timeToStart<0){
             questionsDone=currentQuiz.questions.length;
             nick="";
+            $nickInput.hide();
             nickSet();
         }else{
             $timerText.html(timeToStart);
@@ -272,6 +276,7 @@ $(document).ready(function() {
         $nickSpan.slideUp(speed);
         $nickAppend.html(nick);
         $nickAppend.slideDown(speed);
+        $playerTableDiv.slideDown(speed);
     }
 
     function nickReset(){
@@ -280,6 +285,7 @@ $(document).ready(function() {
         $nickSpan.hide();
         $nickAppend.hide();
         $nickAppend.html("");
+        $playerTableDiv.hide();
     }
 
     function deleteNick(){
@@ -309,7 +315,7 @@ $(document).ready(function() {
             $quizTable.DataTable().ajax.reload();
             return;
         }
-        if(timeToStart===10 && nick===null){
+        if(timeToStart<=10 && nick===null){
             showAlert("nickAlert");
         }
         if(questionsDone===currentQuiz.questions.length && delay === false && timeToStart<=0){
@@ -346,9 +352,10 @@ $(document).ready(function() {
                 delay=true;
                 timeToStart=3;
                 if(""+selectedOption === ""+question.correct){
-                    addPoint();
+                    addPoint(true);
                     $playerTable.DataTable().ajax.reload();
                 }else{
+                    addPoint(false);
                     $selected.addClass("wrong")
                 }
                 $correct.addClass("correct");
@@ -371,10 +378,11 @@ $(document).ready(function() {
         }
     }
 
-    function addPoint(){
+    function addPoint(data){
         $.ajax({
             type: "PUT",
-            url:"rest/quizzes/"+currentQuiz.title+"/users/"+nick
+            url:"rest/quizzes/"+currentQuiz.title+"/users/"+nick,
+            data: ""+data
         });
     }
 
@@ -516,6 +524,16 @@ function addStandardQuiz(){
                 type: "DELETE"
             });
             addStandardQuiz();
+        }
+    });
+}
+
+function printUsers(quiz){
+    $.ajax({
+        url:"rest/"+quiz+"/users",
+        type: "GET",
+        success: function(data){
+            console.log(data);
         }
     });
 }

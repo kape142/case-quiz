@@ -211,3 +211,7 @@ tr{
 .option-input{
     min-width: 100px
 }
+
+#playerTableDiv{
+    display: none;
+}

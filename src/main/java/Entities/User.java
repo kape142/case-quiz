@@ -1,8 +1,9 @@
 package Entities;
 
 public class User {
-    private String name;
-    private int points;
+    private String name="";
+    private int points=0;
+    private int streak=0;
 
     public void setName(String name) {
         this.name = name;
@@ -14,6 +15,20 @@ public class User {
 
     public void incrementPoints(){
         points++;
+        streak++;
+    }
+
+    public void stopStreak(){
+        streak=0;
+    }
+
+    public void setStreak(int streak) {
+        this.streak = streak;
+    }
+
+    public int getStreak() {
+
+        return streak;
     }
 
     public int getPoints() {
@@ -26,10 +41,13 @@ public class User {
         return name;
     }
 
-    public User(String name, int points) {
-
+    public User(String name){
+        this.name = name;
+    }
+    public User(String name, int points, int streak) {
         this.name = name;
         this.points = points;
+        this.streak = streak;
     }
 
     @Override
